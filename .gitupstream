@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Añadiendo upstream de buefy"
+git remote add upstream https://github.com/buefy/buefy.git
+echo "Obteniendo los cambios de buefy"
+git fetch upstream
+echo "Checkout a dev por que es la rama que estamos siguiendo"
+git checkout dev
+echo "Haciendo merge de buefy/dev a local/dev"
+git merge upstream/dev
+echo "En este punto tienes que resolver conflictos en caso de haberlos y verificar que la funcionalidad personalizada se mantenga intacta"
