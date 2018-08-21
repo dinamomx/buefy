@@ -8,6 +8,7 @@ export default {
         rounded: Boolean,
         icon: String,
         iconPack: String,
+        static: Boolean,
 
         // Native options to use in HTML5 validation
         autocomplete: String,

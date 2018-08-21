@@ -104,6 +104,7 @@
                 return [
                     this.statusType,
                     this.size,
+                    {'is-static': this.static},
                     { 'is-rounded': this.rounded }
                 ]
             },
