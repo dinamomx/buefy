@@ -5,16 +5,22 @@
             href="#"
             class="pagination-previous"
             :disabled="!hasPrev"
-            @click.prevent="prev" >
-            <b-icon icon="chevron-left" both/>
+            @click.prevent="prev">
+            <b-icon
+                icon="chevron-left"
+                :pack="iconPack"
+                both/>
         </a>
         <a
             role="button"
             href="#"
             class="pagination-next"
             :disabled="!hasNext"
-            @click.prevent="next" >
-            <b-icon icon="chevron-right" both/>
+            @click.prevent="next">
+            <b-icon
+                icon="chevron-right"
+                :pack="iconPack"
+                both/>
         </a>
         <ul class="pagination-list" v-if="!simple">
             <!--First-->
@@ -85,7 +91,8 @@
             size: String,
             simple: Boolean,
             rounded: Boolean,
-            order: String
+            order: String,
+            iconPack: String
         },
         computed: {
             rootClasses() {

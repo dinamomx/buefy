@@ -1,5 +1,60 @@
 # Buefy Changelog
 
+## 0.7.2
+
+### New features
+
+* Add ``header`` autocomplete slot to taginput
+* Add ``required`` prop to switch
+
+### Fixes
+
+* Fix taginput when ``allow-new`` is enabled
+* Fix pagination order when simple
+
+## 0.7.1
+
+### New features
+
+* **Update Bulma to 0.7.2**
+* Add ``indeterminate`` prop to checkbox (thanks @guanzo)
+* #1029 Upgrade vue-test-utils to latest version (thanks @lordfuoco)
+* #1065 Add tab as confirm key code to taginput (thanks @williamabbott)
+* #1083 Add ``date-creator`` prop to datepicker (thanks @jonagoldman)
+
+### Fixes
+
+* #1024 Fix upload SSR support
+* #1027 Fix ``icon-pack`` prop when individual components
+* #1040 Fix prevent radio with multi-line text from shrinking (thanks @rhwilr)
+* #1067 Fix IE 11 UI switch (thanks @patrickabkarian)
+* #1072 Fix sorting boolean fields
+
+## 0.7.0
+
+### Breaking changes
+
+* Change path to import components to use outside main vue instance, like:
+```javascript
+// see Toast, Snackbar, Modal and Dialog doc pages for more examples
+import { Toast } from 'buefy/dist/components/toast'
+Toast.open('Toasty!')
+```
+* Upload component accepts a single `File` and `Array<File>` when multiple as ``v-model``
+* Rename ``readonly`` to ``editable`` on datepicker and timepicker (now just use the prop without false value)
+* **Removed Panel component**, it was deprecated since 0.5.3
+
+### New features
+
+* Add ``closable`` prop to taginput (thanks @adrlen)
+* #970 Add Object type to ``type`` prop of field and icon
+
+### Fixes
+
+* Updated timepicker style (it's a little smaller now)
+* #992 Fix table header disappear with pagination
+* #999 Fix ``size`` prop to datepicker and timepicker
+
 ## 0.6.7
 
 ### New features
@@ -8,6 +63,7 @@
 * Add ``auto-close`` and ``duration`` props to message and notification
 * Add ``allow-duplicates`` prop to taginput
 * Add ``required`` prop to radio and checkbox
+* Add ``defaultInputHasCounter`` constructor options
 
 ### Fixes and changes
 
@@ -16,6 +72,8 @@
 * #852 Fix label class to field when horizontal
 * #872 Fix datepicker default formatter
 * #895 Fix loading overlay when not in full page (thanks @adrlen)
+* #927 Fix autocomplete when option text is too long (thanks @8bu)
+* #948 Fix switch when multi line text (thanks @rhwilr)
 
 ## 0.6.6
 

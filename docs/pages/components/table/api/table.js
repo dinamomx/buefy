@@ -38,6 +38,13 @@ export default [
                 default: '<code>false</code>'
             },
             {
+                name: '<code>striped</code>',
+                description: 'Whether table is striped',
+                type: 'Boolean',
+                values: '—',
+                default: '<code>false</code>'
+            },
+            {
                 name: '<code>narrowed</code>',
                 description: 'Makes the cells narrower',
                 type: 'Boolean',
@@ -165,7 +172,7 @@ export default [
             },
             {
                 name: '<code>opened-detailed</code>',
-                description: 'Allow pre-defined opened details. Ideal to open details via vue-router. (An unique key is required; check detail-key prop)',
+                description: 'Allow pre-defined opened details. Ideal to open details via vue-router. (A unique key is required; check detail-key prop)',
                 type: 'Array',
                 values: '—',
                 default: '<code>[]</code>'
@@ -179,7 +186,7 @@ export default [
             },
             {
                 name: '<code>detail-key</code>',
-                description: 'Use an unique key of your data Object when use detailed or opened detailed. (id recommended)',
+                description: 'Use a unique key of your data Object when use detailed or opened detailed. (id recommended)',
                 type: 'String',
                 values: '—',
                 default: '—'
@@ -197,8 +204,14 @@ export default [
                 type: 'Function (row: Object)',
                 values: '—',
                 default: 'true'
+            },
+            {
+                name: '<code>icon-pack</code>',
+                description: 'Icon pack to use',
+                type: 'String',
+                values: '<code>mdi</code>, <code>fa</code>, <code>fas</code>, <code>far</code>, <code>fad</code>, <code>fal</code>',
+                default: '<code>mdi</code>'
             }
-
         ],
         slots: [
             {

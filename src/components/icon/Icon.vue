@@ -3,7 +3,7 @@
     <span
         :class="[newType, size]"
         class="icon">
-        <i :class="[newPack, newIcon, newCustomSize, customClass]"/>
+        <!-- <i :class="[newPack, newIcon, newCustomSize, customClass]"/> -->
         <fa-icon
             :icon="[newPack, newIcon]"
             :size="newCustomSize"

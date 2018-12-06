@@ -5,7 +5,7 @@
         <span class="select" :class="spanClasses">
 
             <select
-                v-model="selected"
+                v-model="computedValue"
                 ref="select"
                 :multiple="multiple"
                 :size="nativeSize"
@@ -13,14 +13,16 @@
                 @blur="$emit('blur', $event) && checkHtml5Validity()"
                 @focus="$emit('focus', $event)">
 
-                <option
-                    v-if="placeholder"
-                    :value="null"
-                    selected
-                    disabled
-                    hidden>
-                    {{ placeholder }}
-                </option>
+                <template v-if="placeholder">
+                    <option
+                        v-if="computedValue == null"
+                        :value="null"
+                        selected
+                        disabled
+                        hidden>
+                        {{ placeholder }}
+                    </option>
+                </template>
                 <slot/>
 
             </select>
@@ -58,11 +60,20 @@
         data() {
             return {
                 selected: this.value,
-                _isSelect: true,
                 _elementRef: 'select'
             }
         },
         computed: {
+            computedValue: {
+                get() {
+                    return this.selected
+                },
+                set(value) {
+                    this.selected = value
+                    this.$emit('input', value)
+                    !this.isValid && this.checkHtml5Validity()
+                }
+            },
             spanClasses() {
                 return [this.size, this.statusType, {
                     'is-fullwidth': this.expanded,
@@ -81,15 +92,6 @@
              */
             value(value) {
                 this.selected = value
-                !this.isValid && this.checkHtml5Validity()
-            },
-            /**
-             * When selected:
-             *   1. Emit input event to update the user v-model.
-             *   3. If it's invalid, validate again.
-             */
-            selected(value) {
-                this.$emit('input', value)
                 !this.isValid && this.checkHtml5Validity()
             }
         }

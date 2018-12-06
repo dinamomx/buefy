@@ -51,6 +51,7 @@
                                 <b-icon
                                     v-show="currentSortColumn === column"
                                     icon="arrow-up"
+                                    :pack="iconPack"
                                     both
                                     size="is-small"
                                     :class="{ 'is-desc': !isAsc }"/>
@@ -79,6 +80,7 @@
                                     @click.stop="toggleDetails(row)">
                                     <b-icon
                                         icon="chevron-right"
+                                        :pack="iconPack"
                                         both
                                         :class="{'is-expanded': isVisibleDetailRow(row)}"/>
                                 </a>
@@ -156,6 +158,7 @@
             <div class="level-right">
                 <div v-if="paginated" class="level-item">
                     <b-pagination
+                        :icon-pack="iconPack"
                         :total="newDataTotal"
                         :per-page="perPage"
                         :simple="paginationSimple"
@@ -255,7 +258,8 @@
             total: {
                 type: [Number, String],
                 default: 0
-            }
+            },
+            iconPack: String
         },
         data() {
             return {
@@ -444,6 +448,11 @@
                         let newA = getValueByPath(a, key)
                         let newB = getValueByPath(b, key)
 
+                        // sort boolean type
+                        if (typeof newA === 'boolean' && typeof newB === 'boolean') {
+                            return isAsc ? newA - newB : newB - newA
+                        }
+
                         if (!newA && newA !== 0) return 1
                         if (!newB && newB !== 0) return -1
                         if (newA === newB) return 0
@@ -621,7 +630,7 @@
             checkPredefinedDetailedRows() {
                 const defaultExpandedRowsDefined = this.openedDetailed.length > 0
                 if (defaultExpandedRowsDefined && !this.detailKey.length) {
-                    throw new Error('If you set a predefined opened-detailed, you must provide an unique key using the prop "detail-key"')
+                    throw new Error('If you set a predefined opened-detailed, you must provide a unique key using the prop "detail-key"')
                 }
             },
 

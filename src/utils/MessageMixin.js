@@ -17,6 +17,7 @@ export default {
         type: String,
         hasIcon: Boolean,
         size: String,
+        iconPack: String,
         iconSize: String,
         autoClose: {
             type: Boolean,

@@ -15,7 +15,7 @@
                 :tabstop="false"
                 :disabled="disabled"
                 :ellipsis="ellipsis"
-                closable
+                :closable="closable"
                 @close="removeTag(index)">
                 {{ getNormalizedTagText(tag) }}
             </b-tag>
@@ -34,11 +34,14 @@
                 :size="size"
                 :disabled="disabled"
                 :loading="loading"
-                keep-first
+                :keep-first="!allowNew"
                 @focus="onFocus"
                 @blur="customOnBlur"
                 @keydown.native="keydown"
                 @select="onSelect">
+                <template :slot="headerSlotName">
+                    <slot name="header" />
+                </template>
                 <template
                     :slot="defaultSlotName"
                     slot-scope="props">
@@ -106,9 +109,13 @@
             autocomplete: Boolean,
             disabled: Boolean,
             ellipsis: Boolean,
+            closable: {
+                type: Boolean,
+                default: true
+            },
             confirmKeyCodes: {
                 type: Array,
-                default: () => [13, 188]
+                default: () => [13, 188, 9]
             },
             removeOnKeys: {
                 type: Array,
@@ -162,12 +169,20 @@
                 return this.hasEmptySlot ? 'empty' : 'dontrender'
             },
 
+            headerSlotName() {
+                return this.hasHeaderSlot ? 'header' : 'dontrender'
+            },
+
             hasDefaultSlot() {
                 return !!this.$scopedSlots.default
             },
 
             hasEmptySlot() {
                 return !!this.$slots.empty
+            },
+
+            hasHeaderSlot() {
+                return !!this.$slots.header
             },
 
             /**

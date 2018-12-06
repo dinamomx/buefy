@@ -1,4 +1,4 @@
-import config from './config'
+import config from '../utils/config'
 
 export default {
     props: {
@@ -9,7 +9,6 @@ export default {
         icon: String,
         iconPack: String,
         static: Boolean,
-
         // Native options to use in HTML5 validation
         autocomplete: String,
         maxlength: [Number, String]
@@ -40,8 +39,16 @@ export default {
          */
         statusType() {
             if (!this.parentField) return
-
-            return this.parentField.newType
+            if (!this.parentField.newType) return
+            if (typeof this.parentField.newType === 'string') {
+                return this.parentField.newType
+            } else {
+                for (let key in this.parentField.newType) {
+                    if (this.parentField.newType[key]) {
+                        return key
+                    }
+                }
+            }
         },
 
         /**

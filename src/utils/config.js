@@ -10,6 +10,7 @@ let config = {
     defaultInputAutocomplete: 'on',
     defaultDateFormatter: null,
     defaultDateParser: null,
+    defaultDateCreator: null,
     defaultDayNames: null,
     defaultMonthNames: null,
     defaultFirstDayOfWeek: null,
@@ -19,7 +20,8 @@ let config = {
     defaultModalScroll: null,
     defaultDatepickerMobileNative: true,
     defaultTimepickerMobileNative: true,
-    defaultNoticeQueue: true
+    defaultNoticeQueue: true,
+    defaultInputHasCounter: true
 }
 
 export default config
